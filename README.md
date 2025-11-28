@@ -110,13 +110,17 @@ GND is the ground pin.
 ```
 #include "main.h"
 #include "stdio.h"
-#if defined(__GNUC_s_)
+
+#if defined(__GNUC__)
+
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 #endif
 uint16_t readValue;
 
 ADC_HandleTypeDef hadc;
+
 UART_HandleTypeDef huart2;
+
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_ADC_Init(void);
@@ -125,6 +129,7 @@ int main(void)
 {
 
     HAL_Init();
+
     SystemClock_Config();
 
     MX_GPIO_Init();
@@ -140,20 +145,24 @@ int main(void)
 	uint32_t soilmoist = 100 - (readValue / 40.96);
 	 printf("Soil moisture : %ld %%\n", soilmoist);
 	HAL_Delay(1000);
+
+	 	  	  	  
       }
   }
 PUTCHAR_PROTOTYPE
 {
 	HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, 0xFFFF);
+
 	return ch;
 }
 ```
 
 
 ## Output screen shots on serial monitor   :
- <img width="1919" height="857" alt="495240420-e2a2ec54-211a-4511-a904-c08fa001c36b" src="https://github.com/user-attachments/assets/3abb073c-6625-4660-b888-deddbaa8f71b" />
- 
-![495240983-c947e32a-89db-40cb-a89b-315a51fec1b4](https://github.com/user-attachments/assets/d1bb71c3-8360-4f86-930f-fc867ad5cad8)
+ ![515156761-661dc5ae-801c-46bc-ab07-220a1ed17bf5](https://github.com/user-attachments/assets/fb312acf-b636-4fea-b92d-1760e5cc2b01)
+
+ ![515156963-0c5f46f0-82b7-41ff-b542-d1e03eae6636](https://github.com/user-attachments/assets/3a77265b-5e15-4853-9da7-8a604fcbdab4)
+
 
  
  
